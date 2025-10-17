@@ -1,0 +1,5 @@
+,Model,BestParams,CV Best Score (AUC),Train AUC,Test AUC,Overfit Gap
+2,ExtraTrees,"{'bootstrap': False, 'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 1, 'min_samples_split': 5, 'n_estimators': 400}",0.805284051727081,1.0,0.714228255404726,0.285771744595274
+1,RandomForest,"{'bootstrap': True, 'max_depth': None, 'max_features': 'sqrt', 'min_samples_leaf': 2, 'min_samples_split': 2, 'n_estimators': 200}",0.8045459712824574,0.9991737415050299,0.7040723981900452,0.2951013433149847
+3,XGBoost,"{'colsample_bytree': 0.8, 'learning_rate': 0.05, 'max_depth': 3, 'min_child_weight': 3, 'n_estimators': 300, 'scale_pos_weight': 4.9393939393939394, 'subsample': 1.0}",0.7992859020490097,0.9676984569622606,0.7004524886877828,0.2672459682744779
+0,DecisionTree,"{'max_depth': 6, 'max_features': 'sqrt', 'min_samples_leaf': 4, 'min_samples_split': 10}",0.7215234345661985,0.8653869988225816,0.5871794871794872,0.27820751164309443
