@@ -17,11 +17,11 @@
 - This screenshot was taken at the end of dashboard process.
   <br>
 
-![Kanban 3]()
+![Kanban 3](Images\kanban3.png)
 
 # Kanban Screenshot 4
 
 - This screenshot was taken at the end of the project
   <br>
 
-![Kanban 4]()
+![Kanban 4](Images\kanban4.png)
