@@ -1,3 +1,63 @@
+# **HR Analytics: Predicting Employee Turnover**
+
+**HR Analytics: Predicting Employee Turnover** is Data-driven exploration of the IBM HR Analytics Employee Attrition &amp; Performance dataset by IBM data scientists. This project analyzes key HR factors such as job satisfaction and work-life balance to predict employee attrition and uncover insights to improve retention and performance.
+
+## 1. <a name='TableofContents'></a>Table of Contents
+
+<details>
+  <summary>Click here to expand the contents</summary>
+
+1. [Table of Contents](#TableofContents)
+2. [Project Outcomes and Key Findings](#ProjectOutcomesandKeyFindings)
+3. [Dataset Content](#DatasetContent)
+4. [Business Requirements](#BusinessRequirements)
+5. [Hypothesis and Validation](#HypothesisandValidation)
+6. [Project Plan](#ProjectPlan)
+7. [The Rationale to Map the Business Requirements to the Data Visualizations](#TheRationaletoMaptheBusinessRequirementstotheDataVisualizations)
+8. [Analysis Techniques Used](#AnalysisTechniquesUsed)
+9. [Ethical Considerations](#EthicalConsiderations)
+10. [Dashboard Design](#DashboardDesign)
+11. [Wireframe](#Wireframe)
+12. [Kanban Board](#KanbanBoard)
+13. [Unfixed Bugs](#UnfixedBugs)
+14. [Development Roadmap](#DevelopmentRoadmap)
+15. [Tableau Deployment](#TableauDeployment)
+16. [Main Data Analysis Libraries](#MainDataAnalysisLibraries)
+17. [Credits](#Credits)
+18. [Contributors](#Contributors)
+19. [Acknowledgements](#Acknowledgements)
+
+</details>
+
+## 2. <a name='ProjectOutcomesandKeyFindings'></a>Project Outcomes and Key Findings
+
+| Hypothesis                              | Outcome / Validation                                       | Key Findings                                                                                                                                                                                                                                                                   | Implications for HR                                                                                                                                    |
+| --------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **1. Work-Life Balance and Attrition**  | Chi-square test, bar plot, logistic regression             | - Poor work-life balance is associated with higher attrition (level 1: 31.3%). <br> - Statistically significant relationship confirmed (χ² = 16.325, p = 0.001). <br> - Logistic regression shows β = -0.24, p = 0.014.                                                        | - Introduce flexible hours and mental health/recharge days. <br> - Conduct regular employee surveys to monitor work-life balance.                      |
+| **2. Overtime and Employee Attrition**  | Chi-square test, logistic regression, bar plots            | - Employees working overtime have significantly higher attrition (~30% vs 10%). <br> - Strong statistical correlation (chi² = 89, p < 0.05).                                                                                                                                   | - Monitor overtime hours to prevent burnout. <br> - Consider workload redistribution or compensation incentives.                                       |
+| **3. Job Satisfaction and Attrition**   | Independent-samples t-test, Mann-Whitney U test, box plots | - Lower job satisfaction is strongly associated with higher attrition. <br> - Statistical tests confirm significant difference (p < 0.05). <br> - Attrition decreases as job satisfaction increases.                                                                           | - Implement employee engagement programs to improve satisfaction. <br> - Address dissatisfaction drivers through feedback and recognition systems.     |
+| **4. Distance from Home and Attrition** | Binned distance analysis, bar plots, logistic regression   | - Attrition increases with greater commuting distance. <br> - Employees living 20–30 km away have the highest attrition (~22%). <br> - Logistic regression confirms commuting distance as a significant factor.                                                                | - Offer flexible or remote work options. <br> - Consider transportation support or relocation assistance for distant employees.                        |
+| **5. Career Growth and Retention**      | Scatter plots, box plots, correlation analysis             | - Employees with fewer promotions or shorter tenure with current manager have higher attrition. <br> - Moderate correlation between promotion history and manager tenure (r = 0.51). <br> - Employees who stayed had longer tenure with managers and slightly more promotions. | - Provide structured promotion pathways and career development plans. <br> - Foster stable manager-employee relationships through mentorship programs. |
+| **6. Compensation and Attrition**       | Independent-samples t-test, histograms, box plots          | - Employees who left had significantly lower monthly income than those who stayed. <br> - Large mean difference ($2,045.65) between groups. <br> - Statistical tests strongly reject null hypothesis (t-statistic = -6.2039, p < 0.000001).                                    | - Review and adjust compensation structures for lower-income employees. <br> - Ensure pay equity and performance-based incentives to retain talent.    |
+
+**Overall Project Outcomes:**
+
+- Attrition Drivers Identified: Work-life balance, overtime, job satisfaction, distance from home, career growth, and compensation were all statistically validated as significant predictors of employee attrition.
+
+- Visual and Statistical Confirmation: Multiple visualization techniques (bar plots, scatter plots, box plots, histograms) were combined with statistical tests (t-test, chi-square, Mann-Whitney U, logistic regression) to ensure robust validation.
+
+- Actionable Insights for HR:
+
+  - Flexible work arrangements and workload management.
+
+  - Employee engagement and satisfaction programs.
+
+  - Structured promotion pathways and mentorship programs.
+
+  - Competitive compensation, especially for lower-income brackets.
+
+- Predictive Analysis Foundation: Logistic regression models demonstrated which factors most strongly influence turnover, providing a foundation for predictive HR analytics.
+
 ## 3. <a name='DatasetContent'></a>Dataset Content
 
 The IBM HR Analytics dataset contains employee-level information designed to explore factors affecting employee attrition and performance. It is a fictional dataset created by IBM data scientists.
@@ -69,6 +129,17 @@ By analysing patterns in employee data, the project provides actionable insights
 
    - Create clear, interactive dashboards (in Power BI or Python visualizations) that communicate trends to both technical and non-technical stakeholders.
 
+## 5. <a name='HypothesisandValidation'></a>Hypothesis and Validation
+
+| #                                       | Hypothesis                                                                                     | Validation Method                                                                                                                                                                                                                                                        | Null Hypothesis (H₀)                                                                                               | Alternative Hypothesis (H₁)                                                                                             |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| **1. Work-Life Balance and Attrition**  | Employees with poor work-life balance are more likely to leave the company.                    | - Encode `Attrition` as binary (1=Yes, 0=No)<br>- Compare attrition rates across `WorkLifeBalance` categories<br>- Bar plot of attrition rate by `WorkLifeBalance`<br>- Chi-square test of independence<br>- Logistic regression (`Attrition_encoded ~ WorkLifeBalance`) | There is no significant relationship between `WorkLifeBalance` and attrition.                                      | There is a significant relationship between `WorkLifeBalance` and attrition.                                            |
+| **2. Overtime and Employee Attrition**  | Employees who work overtime are significantly more likely to quit.                             | - Two-proportion z-test or chi-square test comparing `OverTime` (Yes/No) vs `Attrition`<br>- Plot attrition rates by `OverTime` status<br>- Logistic regression with `OverTime` as predictor                                                                             | There is no significant correlation between `OverTime` and `Attrition`.                                            | Employees who work overtime have a significantly higher likelihood of leaving.                                          |
+| **3. Job Satisfaction and Attrition**   | Lower job satisfaction leads to higher attrition.                                              | - Independent-samples t-test comparing `JobSatisfaction` for `Attrition = Yes` vs `No`<br>- Box/violin plots of `JobSatisfaction` by `Attrition`<br>- (Optional) Logistic regression including `JobSatisfaction`                                                         | There is no significant difference in `JobSatisfaction` between employees who left and those who stayed.           | Employees with lower `JobSatisfaction` are more likely to leave.                                                        |
+| **4. Distance from Home and Attrition** | Employees who live farther from work are more likely to leave the company.                     | - Create distance bins (0–5 km, 6–10 km, 11–20 km, 20–30 km)<br>- Calculate attrition rate per distance band<br>- Bar plot of attrition rate by distance band                                                                                                            | There is no significant relationship between `DistanceFromHome` and attrition.                                     | Employees living farther from work have a significantly higher likelihood of attrition.                                 |
+| **5. Career Growth and Retention**      | Employees with fewer promotions or shorter tenure with their manager are more likely to leave. | - Scatter plot: `YearsSinceLastPromotion` vs `YearsWithCurrManager` colored by attrition<br>- Add regression trend line for `Attrition=Yes`<br>- Box plots comparing `YearsSinceLastPromotion` and `YearsWithCurrManager` between groups                                 | Career growth metrics (`YearsSinceLastPromotion`, `YearsWithCurrManager`) have no significant effect on attrition. | Limited career growth (fewer promotions or shorter tenure with current manager) significantly increases attrition risk. |
+| **6. Compensation and Attrition**       | Employees with lower monthly income are more likely to leave.                                  | - Separate `MonthlyIncome` by attrition status<br>- Independent-samples t-test to compare mean income<br>- Visualize income distributions with histograms and box plots                                                                                                  | There is no significant difference in `MonthlyIncome` between employees who left and those who stayed.             | Employees who left have significantly lower `MonthlyIncome` than those who stayed.                                      |
+
 ## 6. <a name='ProjectPlan'></a>Project Plan
 
 | **Phase**                                   | **Tasks**                                                                                                                                                                                          | **Methods / Tools**                                                    | **Expected Outcome**                                                                    |
@@ -127,7 +198,7 @@ This section outlines the key ethical principles, privacy measures, and fairness
 
 1. Data Privacy and Confidentiality
 
-   - The dataset used is a publicly available and anonymised dataset from Kaggle, containing no personally identifiable information (PII).
+   - The dataset used is a publicly available from Kaggle, containing no personally identifiable information (PII).
 
    - No names, contact details, or sensitive identifiers (e.g., national insurance numbers) were included.
 
@@ -173,7 +244,33 @@ This section outlines the key ethical principles, privacy measures, and fairness
 
    - The analysis supports ethical workforce management, highlighting the value of using analytics for positive organisational change rather than surveillance.
 
+## 10. <a name='DashboardDesign'></a>Dashboard Design
+
+The Employee Attrition & Retention Dashboard was developed in Power BI to visualize key employee trends, test hypotheses, and provide actionable insights for HR decision-making.
+It aligns directly with the statistical and visual analyses performed in Python and highlights business-relevant metrics such as attrition rate, compensation, and career growth.
+
+![Dashboard](Images\dashboard.png)
+
+| KPI                                  | Description                                                           |
+| ------------------------------------ | --------------------------------------------------------------------- |
+| **Total Employees (1,470)**          | Displays the total workforce size.                                    |
+| **Attrition Count (237)**            | Number of employees who have left the organization.                   |
+| **Attrition Rate (0.16 or 16%)**     | Percentage of total employees who have left.                          |
+| **Average Work-Life Balance (2.76)** | Mean rating (scale 1–4) reflecting employee work-life balance.        |
+| **Average Job Satisfaction (2.73)**  | Mean satisfaction rating (scale 1–4) showing general job contentment. |
+
+| Visualization                                                               | Purpose                                                            | Key Insights                                                                      |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
+| **Attrition Rate by Years Since Last Promotion (Line Chart)**               | Examine how promotion timing affects attrition.                    | Attrition increases for employees with either very recent or very old promotions. |
+| **Attrition Rate by Distance from Home (Bar Chart)**                        | Show the relationship between commute distance and turnover.       | Employees living 20–30 km away show the highest attrition (~22%).                 |
+| **Sum of Monthly Income by JobRole and Attrition (Clustered Column Chart)** | Compare salary distributions across roles for leavers vs. stayers. | Higher-income roles (e.g., Managers, Sales Executives) show lower attrition.      |
+| **Filters: JobRole, OverTime**                                              | Enable interactive exploration by department or overtime status.   | Dynamic insights allow customized HR analysis by specific employee segments.      |
+
 ## 11. <a name='Wireframe'></a>Wireframe
+
+The wireframe designed using Figma to serve as a blueprint for dashboard layout and navigation, ensuring intuitive flow, visual balance, and consistent user experience before actual Power BI implementation.
+
+![Wireframe](Images\wireframe.png)
 
 ## 12. <a name='KanbanBoard'></a>Kanban Board
 
@@ -181,7 +278,50 @@ This section outlines the key ethical principles, privacy measures, and fairness
 
 - The project board can viewed [here](https://github.com/users/RanaAlaaTahon/projects/4)
 
+## 13. <a name='UnfixedBugs'></a>Unfixed Bugs
+
+- There are currently no known bugs or unresolved issues in this project.
+
+- All analyses, visualizations, and scripts have been tested and validated to work as expected.
+
+- If any issues are discovered in the future, they will be documented here and addressed promptly.
+
+## 14. <a name='DevelopmentRoadmap'></a>Development Roadmap
+
+| **Phase**                                 | **Description**                            | **Planned Enhancements / Actions**                                                                                                       |
+| ----------------------------------------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| **1. Data Enhancement**                   | Improve dataset quality and coverage       | Integrate additional datasets (e.g., engagement surveys, exit interviews), implement automated data cleaning pipelines                   |
+| **2. Advanced Analytics & Modeling**      | Strengthen predictive capabilities         | Apply Random Forest, Gradient Boosting, XGBoost; evaluate feature importance; implement survival analysis or time-series modeling        |
+| **3. Interactive Dashboards & Reporting** | Enhance visualization and usability        | Expand Power BI dashboards with drill-downs and filters; add predictive alerts for HR; scenario analysis by department, tenure, and role |
+| **4. Automation & AI Integration**        | Increase efficiency and insights           | Automate report generation; integrate AI-assisted insights for trend detection; allow natural language querying of HR metrics            |
+| **5. Optimization & Scalability**         | Prepare for production and large-scale use | Optimize code performance; containerize project with Docker; deploy on cloud platforms (Azure/AWS)                                       |
+| **6. HR Policy Simulation**               | Test HR strategies                         | Develop “what-if” simulations (flexible hours, salary adjustments, promotion cycles) to forecast impact on attrition                     |
+| **7. Documentation & Collaboration**      | Improve reproducibility and usability      | Maintain comprehensive analysis documentation; establish Git/GitHub version control; create user guides for stakeholders                 |
+
 ## 15. <a name='BowerBI Deployment'></a>BowerBI Deployment
+
+This project includes PowerBI reports and dashboards that visualise key data insights.
+
+**Important Licensing Note:**
+Due to our license restrictions, the license we currently have does not allow the report to be published to the PowerBI Service for sharing.
+
+**Deployment Details:**
+
+- The PowerBI (.pbix) file can be found here in the repository for local use.
+
+- Normally, deployment involves:
+
+  1. Developing reports locally in PowerBI Desktop.
+
+  2. Publishing reports to the PowerBI Service workspace for access and collaboration.
+
+  3. Configuring data sources, gateways, and scheduled refresh.
+
+  4. Managing permissions and sharing dashboards with stakeholders.
+
+  5. Optionally embedding reports in applications or websites.
+
+- Because our license restricts publishing, users will need to open the .pbix file locally or upgrade licenses to enable cloud sharing.
 
 ## 16. <a name='MainDataAnalysisLibraries'></a>Main Data Analysis Libraries
 
@@ -201,8 +341,9 @@ This section outlines the key ethical principles, privacy measures, and fairness
 
 ## 17. <a name='Credits'></a>Credits
 
-- Kaggle Dataset: [IBM HR Analytics Employee Attrition & Performance Dataset](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset)
-- Generative AI tools: ChatGPT, GitHub Copilot
+**Data Sources:** [Kaggle](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset/)
+
+**AI assistance tools:** ChatGPT, Copilot for brainstorming, code structuring, and documentation.
 
 ## 18. <a name='Contributors'></a>Contributors
 
@@ -210,3 +351,10 @@ This section outlines the key ethical principles, privacy measures, and fairness
 - Mike
 - Ramaz
 - Joy
+
+## 19. <a name='Acknowledgements'></a>Acknowledgements
+
+**A big thank you to:**
+
+- Vasi Pavaloi, a facilitator for this course, for all his support and helpful advice throughout the project.
+- Niel McEwen, a subject expert at Code Institue
