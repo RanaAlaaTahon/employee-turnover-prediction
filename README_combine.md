@@ -249,7 +249,7 @@ This section outlines the key ethical principles, privacy measures, and fairness
 The Employee Attrition & Retention Dashboard was developed in Power BI to visualize key employee trends, test hypotheses, and provide actionable insights for HR decision-making.
 It aligns directly with the statistical and visual analyses performed in Python and highlights business-relevant metrics such as attrition rate, compensation, and career growth.
 
-![Dashboard](Images\dashboard.png)
+![Dashboard](/Images/dashboard.png)
 
 | KPI                                  | Description                                                           |
 | ------------------------------------ | --------------------------------------------------------------------- |
@@ -270,7 +270,7 @@ It aligns directly with the statistical and visual analyses performed in Python 
 
 The wireframe designed using Figma to serve as a blueprint for dashboard layout and navigation, ensuring intuitive flow, visual balance, and consistent user experience before actual Power BI implementation.
 
-![Wireframe](Images\wireframe.png)
+![Wireframe](/Images/wireframe.png)
 
 ## 12. <a name='KanbanBoard'></a>Kanban Board
 
