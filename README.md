@@ -7,25 +7,26 @@
 <details>
   <summary>Click here to expand the contents</summary>
 
-1. [Table of Contents](#TableofContents)
-2. [Project Outcomes and Key Findings](#ProjectOutcomesandKeyFindings)
-3. [Dataset Content](#DatasetContent)
-4. [Business Requirements](#BusinessRequirements)
-5. [Hypothesis and Validation](#HypothesisandValidation)
-6. [Project Plan](#ProjectPlan)
-7. [The Rationale to Map the Business Requirements to the Data Visualisations](#TheRationaletoMaptheBusinessRequirementstotheDataVisualizations)
-8. [Analysis Techniques Used](#AnalysisTechniquesUsed)
-9. [Ethical Considerations](#EthicalConsiderations)
-10. [Dashboard Design](#DashboardDesign)
-11. [Wireframe](#Wireframe)
-12. [Kanban Board](#KanbanBoard)
-13. [Unfixed Bugs](#UnfixedBugs)
-14. [Development Roadmap](#DevelopmentRoadmap)
-15. [Tableau Deployment](#TableauDeployment)
-16. [Main Data Analysis Libraries](#MainDataAnalysisLibraries)
-17. [Credits](#Credits)
-18. [Contributors](#Contributors)
-19. [Acknowledgements](#Acknowledgements)
+1.  [Table of Contents](#TableofContents)
+2.  [Project Outcomes and Key Findings](#ProjectOutcomesandKeyFindings)
+3.  [Dataset Content](#DatasetContent)
+4.  [Business Requirements](#BusinessRequirements)
+5.  [Hypothesis and Validation](#HypothesisandValidation)
+6.  [Employee Attrition – Machine Learning Summary](#EmployeeAttritionMachineLearningSummary)
+7.  [Project Plan](#ProjectPlan)
+8.  [The Rationale to Map the Business Requirements to the Data Visualizations](#TheRationaletoMaptheBusinessRequirementstotheDataVisualizations)
+9.  [Analysis Techniques Used](#AnalysisTechniquesUsed)
+10. [Ethical Considerations](#EthicalConsiderations)
+11. [Dashboard Design](#DashboardDesign)
+12. [Wireframe](#Wireframe)
+13. [Kanban Board](#KanbanBoard)
+14. [Unfixed Bugs](#UnfixedBugs)
+15. [Development Roadmap](#DevelopmentRoadmap)
+16. [BowerBI Deployment](#BowerBIDeployment)
+17. [Main Data Analysis Libraries](#MainDataAnalysisLibraries)
+18. [Credits](#Credits)
+19. [Contributors](#Contributors)
+20. [Acknowledgements](#Acknowledgements)
 
 </details>
 
@@ -138,17 +139,16 @@ By analysing patterns in employee data, the project provides actionable insights
 | **3. Job Satisfaction and Attrition**   | Lower job satisfaction leads to higher attrition.                                              | - Independent-samples t-test comparing `JobSatisfaction` for `Attrition = Yes` vs `No`<br>- Box/violin plots of `JobSatisfaction` by `Attrition`<br>- (Optional) Logistic regression including `JobSatisfaction`                                                         | There is no significant difference in `JobSatisfaction` between employees who left and those who stayed.           | Employees with lower `JobSatisfaction` are more likely to leave.                                                        |
 | **4. Distance from Home and Attrition** | Employees who live farther from work are more likely to leave the company.                     | - Create distance bins (0–5 km, 6–10 km, 11–20 km, 20–30 km)<br>- Calculate attrition rate per distance band<br>- Bar plot of attrition rate by distance band                                                                                                            | There is no significant relationship between `DistanceFromHome` and attrition.                                     | Employees living farther from work have a significantly higher likelihood of attrition.                                 |
 | **5. Career Growth and Retention**      | Employees with fewer promotions or shorter tenure with their manager are more likely to leave. | - Scatter plot: `YearsSinceLastPromotion` vs `YearsWithCurrManager` colored by attrition<br>- Add regression trend line for `Attrition=Yes`<br>- Box plots comparing `YearsSinceLastPromotion` and `YearsWithCurrManager` between groups                                 | Career growth metrics (`YearsSinceLastPromotion`, `YearsWithCurrManager`) have no significant effect on attrition. | Limited career growth (fewer promotions or shorter tenure with current manager) significantly increases attrition risk. |
-| **6. Compensation and Attrition**       | Employees with lower monthly income are more likely to leave.                                  | - Separate `MonthlyIncome` by attrition status<br>- Independent-samples t-test to compare mean income<br>- Visualize income distributions with histograms and box plots                                                                                                  | There is no significant difference in `MonthlyIncome` between employees who left and those who stayed.             | Employees who left have significantly lower `MonthlyIncome` than those who stayed.      
+| **6. Compensation and Attrition**       | Employees with lower monthly income are more likely to leave.                                  | - Separate `MonthlyIncome` by attrition status<br>- Independent-samples t-test to compare mean income<br>- Visualize income distributions with histograms and box plots                                                                                                  | There is no significant difference in `MonthlyIncome` between employees who left and those who stayed.             | Employees who left have significantly lower `MonthlyIncome` than those who stayed.                                      |
 
+## 6. <a name='EmployeeAttritionMachineLearningSummary'></a> Employee Attrition – Machine Learning Summary
 
-## 🧩 Employee Attrition – Machine Learning Summary
-
-### Overview
+### 6.1. <a name='Overview'></a>Overview
 
 This project investigates the key factors influencing employee attrition using the IBM HR Analytics dataset.  
 Machine learning models were developed to predict which employees are most at risk of leaving and to identify the strongest drivers of turnover.
 
-### Machine Learning Process
+### 6.2. <a name='MachineLearningProcess'></a>Machine Learning Process
 
 1. **Data Preparation** – Cleaned and encoded categorical variables (e.g. `OverTime`, `Attrition`, `JobRole`),  
    treating ordinal and continuous features appropriately.
@@ -159,25 +159,25 @@ Machine learning models were developed to predict which employees are most at ri
    **Random Forest** and **XGBoost** emerged as the best-performing and most stable models.
 5. **Interpretation** – Analysed feature importance and visualised results through precision–recall curves and confusion matrices.
 
-### Key Findings vs Hypotheses
+### 6.3. <a name='KeyFindingsvsHypotheses'></a>Key Findings vs Hypotheses
 
-| Hypothesis | Outcome |
-|-------------|----------|
-| **1. Work–Life Balance** | Poor work–life balance is associated with higher attrition. |
-| **2. Overtime** | Employees working overtime are significantly more likely to leave. |
-| **3. Job Satisfaction** | Lower job satisfaction strongly correlates with higher attrition. |
-| **4. Distance from Home** | Attrition increases with greater commuting distance. |
-| **5. Career Growth** | Fewer promotions or shorter tenure with a manager increase attrition. |
-| **6. Compensation** | Employees who left earned noticeably lower monthly income than those who stayed. |
+| Hypothesis                | Outcome                                                                          |
+| ------------------------- | -------------------------------------------------------------------------------- |
+| **1. Work–Life Balance**  | Poor work–life balance is associated with higher attrition.                      |
+| **2. Overtime**           | Employees working overtime are significantly more likely to leave.               |
+| **3. Job Satisfaction**   | Lower job satisfaction strongly correlates with higher attrition.                |
+| **4. Distance from Home** | Attrition increases with greater commuting distance.                             |
+| **5. Career Growth**      | Fewer promotions or shorter tenure with a manager increase attrition.            |
+| **6. Compensation**       | Employees who left earned noticeably lower monthly income than those who stayed. |
 
-### Conclusions
+### 6.4. <a name='Conclusions'></a>Conclusions
 
-- **XGBoost** and **Random Forest** achieved the best balance between accuracy and recall.  
-- **Recall-focused tuning** improved the ability to identify leavers without major loss of precision.  
-- Findings support all six hypotheses, confirming that attrition is influenced by workload, satisfaction, tenure and pay equity.  
+- **XGBoost** and **Random Forest** achieved the best balance between accuracy and recall.
+- **Recall-focused tuning** improved the ability to identify leavers without major loss of precision.
+- Findings support all six hypotheses, confirming that attrition is influenced by workload, satisfaction, tenure and pay equity.
 - Insights can guide HR teams to improve retention by promoting better work–life balance, fair compensation and career progression.
 
-#### Next Steps
+#### 6.4.1. <a name='NextSteps'></a>Next Steps
 
 - Train models with more extensive parameter grids.
 - Optimise the training process by creating reusable functions.
@@ -187,7 +187,7 @@ Machine learning models were developed to predict which employees are most at ri
 
                                 |
 
-## 6. <a name='ProjectPlan'></a>Project Plan
+## 7. <a name='ProjectPlan'></a>Project Plan
 
 | **Phase**                                   | **Tasks**                                                                                                                                                                                          | **Methods / Tools**                                                    | **Expected Outcome**                                                                    |
 | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
@@ -200,7 +200,7 @@ Machine learning models were developed to predict which employees are most at ri
 | **7. Insight Generation & Recommendations** | - Translate analysis into actionable HR strategies<br>- Highlight retention interventions (career growth, work-life balance, compensation, commute, overtime)                                      | Summary reports, Power BI dashboards, documentation                    | Evidence-based recommendations for reducing attrition and improving employee engagement |
 | **8. Documentation & Sharing**              | - Prepare README, project report, and visual dashboards<br>- Include methodology, results, and actionable insights                                                                                 | Markdown, Power BI, GitHub, Jupyter Notebook                           | Clear, comprehensive, and reproducible project documentation                            |
 
-## 7. <a name='TheRationaletoMaptheBusinessRequirementstotheDataVisualizations'></a>The Rationale to Map the Business Requirements to the Data Visualizations
+## 8. <a name='TheRationaletoMaptheBusinessRequirementstotheDataVisualizations'></a>The Rationale to Map the Business Requirements to the Data Visualizations
 
 Mapping business requirements to data visualizations ensures that each chart, plot, or dashboard is aligned with HR objectives and delivers actionable insights. This approach helps both technical and non-technical stakeholders interpret data efficiently and supports evidence-based decision-making.
 
@@ -224,7 +224,7 @@ Mapping business requirements to data visualizations ensures that each chart, pl
 
 - Bridge Technical & Non-Technical Audiences: Combines statistical rigor with intuitive visuals.
 
-## 8. <a name='AnalysisTechniquesUsed'></a>Analysis Techniques Used
+## 9. <a name='AnalysisTechniquesUsed'></a>Analysis Techniques Used
 
 This project applied a combination of statistical analysis, data visualization, and AI-assisted techniques to explore employee attrition patterns and validate hypotheses.
 Each method was chosen to extract meaningful insights and present results clearly for both technical and non-technical audiences.
@@ -238,7 +238,7 @@ Each method was chosen to extract meaningful insights and present results clearl
 | **5. AI-Assisted Support and Code Optimisation**      | Leveraged AI tools to suggest efficient code, generate explanations, and optimise repetitive tasks.                                                                                                                         | ChatGPT, GitHub Copilot                                                            |
 | **6. Limitations and Alternative Approaches**         | Cross-sectional dataset limits causal inference. Suggested improvements include data balancing (SMOTE), and using decision trees or random forests for better interpretability.                                             | SMOTE, Decision Tree, Random Forest                                                |
 
-## 9. <a name='EthicalConsiderations'></a>Ethical Considerations
+## 10. <a name='EthicalConsiderations'></a>Ethical Considerations
 
 Ethical, legal, and social responsibility are essential components of any data analytics project — especially when working with employee information.
 This section outlines the key ethical principles, privacy measures, and fairness practices applied throughout the project.
@@ -291,7 +291,7 @@ This section outlines the key ethical principles, privacy measures, and fairness
 
    - The analysis supports ethical workforce management, highlighting the value of using analytics for positive organisational change rather than surveillance.
 
-## 10. <a name='DashboardDesign'></a>Dashboard Design
+## 11. <a name='DashboardDesign'></a>Dashboard Design
 
 The Employee Attrition & Retention Dashboard was developed in Power BI to visualize key employee trends, test hypotheses, and provide actionable insights for HR decision-making.
 It aligns directly with the statistical and visual analyses performed in Python and highlights business-relevant metrics such as attrition rate, compensation, and career growth.
@@ -313,19 +313,19 @@ It aligns directly with the statistical and visual analyses performed in Python 
 | **Sum of Monthly Income by JobRole and Attrition (Clustered Column Chart)** | Compare salary distributions across roles for leavers vs. stayers. | Higher-income roles (e.g., Managers, Sales Executives) show lower attrition.      |
 | **Filters: JobRole, OverTime**                                              | Enable interactive exploration by department or overtime status.   | Dynamic insights allow customized HR analysis by specific employee segments.      |
 
-## 11. <a name='Wireframe'></a>Wireframe
+## 12. <a name='Wireframe'></a>Wireframe
 
 The wireframe designed using Figma to serve as a blueprint for dashboard layout and navigation, ensuring intuitive flow, visual balance, and consistent user experience before actual Power BI implementation.
 
 ![Wireframe](/Images/wireframe.png)
 
-## 12. <a name='KanbanBoard'></a>Kanban Board
+## 13. <a name='KanbanBoard'></a>Kanban Board
 
 - The kanban board screenshots can be found [here](Images)
 
 - The project board can viewed [here](https://github.com/users/RanaAlaaTahon/projects/4)
 
-## 13. <a name='UnfixedBugs'></a>Unfixed Bugs
+## 14. <a name='UnfixedBugs'></a>Unfixed Bugs
 
 - There are currently no known bugs or unresolved issues in this project.
 
@@ -333,7 +333,7 @@ The wireframe designed using Figma to serve as a blueprint for dashboard layout 
 
 - If any issues are discovered in the future, they will be documented here and addressed promptly.
 
-## 14. <a name='DevelopmentRoadmap'></a>Development Roadmap
+## 15. <a name='DevelopmentRoadmap'></a>Development Roadmap
 
 | **Phase**                                 | **Description**                            | **Planned Enhancements / Actions**                                                                                                       |
 | ----------------------------------------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
@@ -345,7 +345,7 @@ The wireframe designed using Figma to serve as a blueprint for dashboard layout 
 | **6. HR Policy Simulation**               | Test HR strategies                         | Develop “what-if” simulations (flexible hours, salary adjustments, promotion cycles) to forecast impact on attrition                     |
 | **7. Documentation & Collaboration**      | Improve reproducibility and usability      | Maintain comprehensive analysis documentation; establish Git/GitHub version control; create user guides for stakeholders                 |
 
-## 15. <a name='Bower BI Deployment'></a>BowerBI Deployment
+## 16. <a name='BowerBIDeployment'></a>BowerBI Deployment
 
 This project includes Power BI reports and dashboards that visualise key data insights.
 
@@ -370,7 +370,7 @@ Due to our license restrictions, the license we currently have does not allow th
 
 - Because our license restricts publishing, users will need to open the .pbix file locally or upgrade licenses to enable cloud sharing.
 
-## 16. <a name='MainDataAnalysisLibraries'></a>Main Data Analysis Libraries
+## 17. <a name='MainDataAnalysisLibraries'></a>Main Data Analysis Libraries
 
 | **Library**                                                           | **Purpose**                                           |
 | --------------------------------------------------------------------- | ----------------------------------------------------- |
@@ -386,20 +386,20 @@ Due to our license restrictions, the license we currently have does not allow th
 | **statsmodels**                                                       | Logistic regression and advanced statistical modeling |
 | **warnings** (filterwarnings)                                         | Suppress non-critical warnings during analysis        |
 
-## 17. <a name='Credits'></a>Credits
+## 18. <a name='Credits'></a>Credits
 
 **Data Sources:** [Kaggle](https://www.kaggle.com/datasets/pavansubhasht/ibm-hr-analytics-attrition-dataset/)
 
 **AI assistance tools:** ChatGPT, Copilot for brainstorming, code structuring and documentation.
 
-## 18. <a name='Contributors'></a>Contributors
+## 19. <a name='Contributors'></a>Contributors
 
 - Rana
 - Mike
 - Ramaz
 - Joy
 
-## 19. <a name='Acknowledgements'></a>Acknowledgements
+## 20. <a name='Acknowledgements'></a>Acknowledgements
 
 **A big thank you to:**
 
